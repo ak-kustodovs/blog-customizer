@@ -39,14 +39,14 @@ const App = () => {
 	}
 
 	return (
-		<div className={clsx(styles.main)} style={state as CSSProperties}>
+		<main className={clsx(styles.main)} style={state as CSSProperties}>
 			<ArticleParamsForm
 				isOpen={open}
 				setNewStyles={setNewStyle}
 				onClick={onClick}
 			/>
 			<Article />
-		</div>
+		</main>
 	);
 };
 

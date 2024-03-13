@@ -16,7 +16,9 @@ import {
 	contentWidthArr,
 	OptionType,
 } from 'src/constants/articleProps';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+
+import { useClose } from 'src/hooks/useClose';
 
 const initialState = {
 	fontFamilyOption: defaultArticleState.fontFamilyOption,
@@ -39,6 +41,9 @@ export const ArticleParamsForm = ({
 }: TArticleParamsFormProps) => {
 	const [state, setState] = useState(initialState);
 
+	const ref = useRef(null);
+	useClose({ isOpen: isOpen, onClose: onClick, rootRef: ref });
+
 	function onSubmit(e: React.FormEvent) {
 		e.preventDefault();
 		setNewStyles(state);
@@ -53,7 +58,7 @@ export const ArticleParamsForm = ({
 	return (
 		<>
 			<ArrowButton onClick={onClick} isOpen={isOpen} />
-			<aside
+			<aside ref={ref}
 				className={`${styles.container} ${
 					isOpen ? styles.container_open : ''
 				}`}>
